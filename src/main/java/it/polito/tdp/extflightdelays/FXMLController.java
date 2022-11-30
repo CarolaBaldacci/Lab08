@@ -5,8 +5,11 @@
 package it.polito.tdp.extflightdelays;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.extflightdelays.model.Airport;
+import it.polito.tdp.extflightdelays.model.CoppiaId;
 import it.polito.tdp.extflightdelays.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.control.TextField;
 public class FXMLController {
 
 	private Model model;
+	List<Airport> aereoporti;
 	
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -35,7 +39,18 @@ public class FXMLController {
 
     @FXML
     void doAnalizzaAeroporti(ActionEvent event) {
-    	//TODO
+    	//stampa: N vertici, N archi, archi con relative distanze
+    	txtResult.clear();
+    	int x=Integer.parseInt(distanzaMinima.getText()) ;
+    	if(x <0) {
+    		txtResult.appendText("inserire una distanza numerica positiva valida");
+    		return ;
+    	}
+    	List<CoppiaId> percorso= model.calcolaPercorso(x);
+        txtResult.appendText(model.numeroVertici()+" "+model.numeroArchi()+" \n");
+        for(CoppiaId c: percorso)
+        	txtResult.appendText(c.toString());
+       
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
