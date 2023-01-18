@@ -97,7 +97,8 @@ public class Model {
 		        }
 		        if(distanza >=x) {
 		        	for(DefaultEdge e : this.grafo.edgeSet()) {
-		        		CoppiaId c =new CoppiaId(this.grafo.getEdgeSource(e).getId(), this.grafo.getEdgeTarget(e).getId(), this.grafo.getEdgeWeight(e));
+		        		CoppiaId c =new CoppiaId(this.grafo.getEdgeSource(e).getId(), 
+		        				this.grafo.getEdgeTarget(e).getId(), this.grafo.getEdgeWeight(e));
 			        	if(!risultato.contains(c))
 			        		risultato.add(c);
 		        	}
